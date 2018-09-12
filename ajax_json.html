@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button onclick="ajaxGetJson()">Mostrar Json</button>
+	<div id="json"></div>
+	
+	<script type="text/javascript">
+		var resultado = document.getElementById('json');
+		function ajaxGetJson() {
+			var ajax_json = new XMLHttpRequest();
+			ajax_json.onreadystatechange = function () {
+				if (ajax_json.readyState == 4 && ajax_json.status == 200) {
+					
+					// para no repetir la información en la pantalla
+					if (resultado.innerHTML == "") {
+						var datos = JSON.parse(ajax_json.responseText); // pasamos el texto a un objeto json
+						for(var dato in datos){
+							resultado.innerHTML += dato + ": " + datos[dato] + "<br>";
+							console.log(dato);
+						}
+					}
+					
+				}
+			};
+
+			ajax_json.open("GET","ajax.json",true);
+			ajax_json.send();
+
+		}
+	</script>
+
+</body>
+</html>

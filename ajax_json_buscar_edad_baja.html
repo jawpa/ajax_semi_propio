@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Json Array Ajax</title>
+</head>
+<body>
+	<button onclick="buscarJsonArray()">Mostrar Info</button>
+	<div id="json"></div>
+	<script>
+		function buscarJsonArray() {
+			var lugar = document.getElementById('json');
+			ajax_json = new XMLHttpRequest();
+			ajax_json.onreadystatechange = function () {
+				if (ajax_json.readyState == 4 && ajax_json.status == 200) {
+					// convertimos la cadena/respuesta en json para trabajarlo
+					var datos = JSON.parse(ajax_json.responseText);
+					var edad_menor = edadMenor2(datos); 
+					// imprimimos la edad menor:
+					lugar.innerHTML = "la edad menor es: " + edad_menor;
+				}
+			};
+
+			ajax_json.open("GET","ajax_json_array.json",true);
+			ajax_json.send();
+		}
+
+		function edadMenor(datos) {
+			var edad_menor = 999;
+			// recorremos los objetos del array json
+			for(var dato in datos){
+				if(datos[dato]['age'] < edad_menor){
+					edad_menor = datos[dato]['age'];
+				}
+			}
+
+			return edad_menor;
+		}
+
+		//otra función que da el mismo resultado
+		function edadMenor2(objetoJson) {
+			var arreglo = [];
+
+			for(var dato in datos){
+				var persona = datos[dato];  // almacenamos a cada elemento del array
+				// metemos la edad en el arreglo
+				arreglo.push(persona.age);
+			}
+
+			return arreglo;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ajax Post Form</title>
+</head>
+<body>
+	nombre: <input type="text" id="nombre"><br><br>
+	apellido: <input type="text" id="apellido"><br><br>
+
+	<input type="submit" value="Enviar" onclick="ajax_post();">
+
+	<div id="info"></div>
+
+	<script type="text/javascript">
+		var lugar = document.getElementById('info');
+		function ajax_post() {
+			var xmlhttp = new XMLHttpRequest();
+			var n = document.getElementById('nombre').value;
+			var a = document.getElementById('apellido').value;
+			
+			// información enviada al servidor:
+			var informacionUsuario = "nombre=" + n + "&apellido=" + a;
+			xmlhttp.onreadystatechange = function () {
+				if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+					// recibe el mensaje del servidor
+					var mensaje = xmlhttp.responseText;
+					lugar.innerHTML = mensaje;
+				}
+			}
+
+			// cómo y dónde dirigimos a la información del formulario 
+			xmlhttp.open("POST","ajax_post_form.php",true);
+			// para enviar la información del formulario al servidor
+			xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			// nombre de la variable que almacena la información del usuario
+			xmlhttp.send(informacionUsuario);
+
+		}
+		
+
+	</script>
+</body>
+</html>

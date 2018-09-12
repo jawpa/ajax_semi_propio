@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ajax</title>
+</head>
+<body>
+	<form>
+		Buscar Alumno: <input type="text" placeholder="ingresar el nombre" onkeyup="mostrarUsuario(this.value)" >
+	</form>
+	<div id="info"></div>
+
+	<script type="text/javascript">
+		function mostrarUsuario(argument) {
+			xmlhttp = new XMLHttpRequest();
+
+			if(argument.length === ""){
+				document.getElementById('info').innerHTML = "";
+			}else{
+				xmlhttp.onreadystatechange = function () {
+					if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+						document.getElementById('info').innerHTML = this.responseText;
+					}
+				};
+				xmlhttp.open("get","ajax_mysql_buscar_con_sugerencia.php?nombre=" + argument,true);
+				xmlhttp.send();
+			}
+		}
+	</script>
+	
+</body>
+</html>

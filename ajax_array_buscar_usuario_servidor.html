@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ajax Post Form</title>
+</head>
+<body>
+	<form action="">
+		Buscar Usuario: <input type="text" onkeyup="mostrarSugerencia(this.value)">
+	</form>
+	
+	<p>Sugerencias: <span id="info"></span></p>
+
+
+	<script type="text/javascript">
+		
+		function mostrarSugerencia(usuario) {
+			var xmlhttp = new XMLHttpRequest();
+			
+			if (usuario.length === 0) {
+				// si el usuario no ingresa algo, no vemos nada en la pantalla
+				document.getElementById("info").innerHTML = "";
+			
+			}else{
+				xmlhttp.onreadystatechange = function () {
+					if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+						document.getElementById("info").innerHTML = xmlhttp.responseText;
+					}
+				};
+
+				// le pasamos el par nombre-valor al servidor
+				xmlhttp.open("GET","ajax_buscar_usuario_servidor.php?nombre=" + usuario, true);
+				xmlhttp.send();
+			}
+		}
+		
+
+	</script>
+</body>
+</html>

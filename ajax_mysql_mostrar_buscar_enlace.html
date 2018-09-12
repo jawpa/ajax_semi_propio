@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ajax mysql</title>
+	<style>
+		/*button{
+			padding: 15px;
+			margin-left: 42%;
+			font-size: 14px;
+			cursor: pointer;
+		}
+
+		div#overlay{
+			display: none;
+			z-index: 2;
+			background: #000000;
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			top: 0px;
+			left: 0px;
+			text-align: center;
+		}
+
+		div#informacionUsuario{
+			display: none;
+			position: relative;
+			z-index: 3;
+			margin: 100px auto 0px auto;
+			width: 400px;
+			height: 250px;
+			background: #ffffff;
+			color: #000000;
+			border: 4px solid #cccccc;
+			font-size: 18px; 
+		}
+
+		div#info{
+			position: absolute;
+			top: 40px;
+		}
+
+		#info2{
+			padding: 20px;
+		}
+
+		#titulo{
+			width: 100%;
+			height: 12%;
+			background: #e9e9e9;
+			padding: 20px;
+			text-align: center;
+			font-family: arial;
+			font-size: 18px;
+			padding-top: 15px;
+		}
+*/
+	</style>
+</head>
+<!-- cuando cargue la página, ejecutamos la función -->
+<body onload="mostrarAlumnos()">
+	<form action="">
+		Buscar Alumno:<input type="text" id="nombre" placeholder="ingresar nombre" onkeyup="buscarAlumno(this.value)">
+	</form><br>
+
+	<div id="info"></div>
+
+	<!-- parte opaca -->
+	<div id="overlay">
+		<div id="mostrar"></div>
+	</div>
+
+	<div id="informacionAlumno">
+		<div id="titulo">Información del Alumno</div>
+		<p id="info2"></p>
+		<!-- le pasamos como parámetro el elemento que ha sido seleccionado -->
+		<button onclick="toggleOverlay(this)">Cerrar</button>
+	</div>
+
+
+	<script>
+		function mostrarAlumnos() {
+			var xmlhttp = new XMLHttpRequest();
+
+			xmlhttp.onreadystatechange = function () {
+				if (this.readyState === 4 && this.status === 200) {
+					document.getElementById('info').innerHTML = this.responseText;
+				}
+			};
+
+			xmlhttp.open("GET","ajax_mysql_mostrar_buscar.php",true);
+			xmlhttp.send(); 
+
+		}
+
+		function buscarAlumno(nombre) {
+			var xmlhttp = new XMLHttpRequest();
+
+			xmlhttp.onreadystatechange = function () {
+				if (this.readyState === 4 && this.status === 200) {
+					document.getElementById('info').innerHTML = this.responseText;
+				}
+			};
+
+			xmlhttp.open("GET","ajax_mysql_mostrar_buscar.php?nombre=" + nombre,true);
+			xmlhttp.send(); 			
+		}
+
+
+		// alternar superposición
+		function toggleOverlay(argument) {
+			var overlay = document.getElementById('overlay');
+			var informacionAlumno = document.getElementById('informacionAlumno');
+			var info2 = document.getElementById('info2');
+
+			// le damos opacidad a la parte opaca
+			overlay.style.opacity = .6;
+
+			// si la parte opaca se encuentra presente
+			// al hacer click e cerrar tiene que desaparecer
+			if (overlay.style.display == "block") {
+				overlay.style.display = "none";
+				informacionAlumno.style.display = "none";
+			}else{
+				overlay.style.display = "block";
+				informacionAlumno.style.display = "block";
+			}
+
+			// obtenemos el nombre del usuario seleccionado
+			var nombre = argument.innerHTML;
+			// el value del hidden, que sería la puntuación
+			var puntuacion = argument.nextSibling.value;
+			
+			info2.innerHTML = "<strong>Nombre:</strong>" + nombre + "<br>"  +  "<strong>Puntuación:</strong>" + puntuacion;
+		}
+	</script>
+</body>
+</html>

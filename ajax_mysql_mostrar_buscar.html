@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ajax mysql</title>
+	
+</head>
+<!-- cuando cargue la página, ejecutamos la función -->
+<body onload="mostrarAlumnos()">
+	<form action="">
+		Buscar Alumno:<input type="text" id="nombre" placeholder="ingresar nombre" onkeyup="buscarAlumno(this.value)">
+	</form><br>
+
+	<div id="info"></div>
+
+	
+
+
+	<script>
+		function mostrarAlumnos() {
+			var xmlhttp = new XMLHttpRequest();
+
+			xmlhttp.onreadystatechange = function () {
+				if (this.readyState === 4 && this.status === 200) {
+					document.getElementById('info').innerHTML = this.responseText;
+				}
+			};
+
+			xmlhttp.open("GET","ajax_mysql_mostrar_buscar.php",true);
+			xmlhttp.send(); 
+
+		}
+
+		function buscarAlumno(nombre) {
+			var xmlhttp = new XMLHttpRequest();
+
+			xmlhttp.onreadystatechange = function () {
+				if (this.readyState === 4 && this.status === 200) {
+					document.getElementById('info').innerHTML = this.responseText;
+				}
+			};
+
+			xmlhttp.open("GET","ajax_mysql_mostrar_buscar.php?nombre=" + nombre,true);
+			xmlhttp.send(); 			
+		}
+
+
+		
+	</script>
+</body>
+</html>

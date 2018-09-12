@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ajax Post Form</title>
+</head>
+<body>
+	numero1: <input type="text" id="numero1"><br><br>
+	numero2: <input type="text" id="numero2"><br><br>
+
+	<input type="submit" value="Enviar" onclick="ajax_post();">
+
+	<div id="info"></div>
+
+	<script type="text/javascript">
+		var lugar = document.getElementById('info');
+		function ajax_post() {
+			var xmlhttp = new XMLHttpRequest();
+			var numero1 = document.getElementById('numero1').value;
+			var numero2 = document.getElementById('numero2').value;
+			
+			// información enviada al servidor:
+			var numeros = "numero1=" + numero1 + "&numero2=" + numero2;
+			xmlhttp.onreadystatechange = function () {
+				if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+					// recibe el mensaje del servidor
+					var mensaje = xmlhttp.responseText;
+					lugar.innerHTML = mensaje;
+				}
+			}
+
+			// cómo y dónde dirigimos a la información del formulario 
+			xmlhttp.open("POST","ajax_post_calculos.php",true);
+			// para enviar la información del formulario al servidor
+			xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			// nombre de la variable que almacena la información del usuario
+			xmlhttp.send(numeros);
+
+		}
+		
+
+	</script>
+</body>
+</html>

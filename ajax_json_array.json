@@ -1,0 +1,22 @@
+[{ "name": "John",
+   "apellido": "Cartulis",	 
+  "age": 30, 
+  "car": "volsvagen lancha" },
+  { "name": "Isidoro",
+   "apellido": "Pantuflas",	 
+  "age": 54, 
+  "car": "renó espiedo" },
+  { "name": "Joaco",
+   "apellido": "Tavarez",	 
+  "age": 25, 
+  "car": "onda laguna seca" },
+  { "name": "Pedro",
+   "apellido": "Washington",	 
+  "age": 32, 
+  "car": "ferrari ñandú" },
+  { "name": "Monser",
+   "apellido": "Dolores",	 
+  "age": 76, 
+  "car": "ford carreta" }
+
+]

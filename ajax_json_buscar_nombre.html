@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Json Array Ajax</title>
+</head>
+<body>
+										<!-- se ejecuta cada vez que se deja de apretar, el parámetro es lo ingresado en la caja -->
+	Buscar Persona: <input type="text" onkeyup="ajax_get_json(this.value)">
+	<div id="json"></div>
+	<script>
+		function ajax_get_json(nombre) {
+			var lugar = document.getElementById('json');
+			ajax_json = new XMLHttpRequest();
+			ajax_json.onreadystatechange = function () {
+				if (ajax_json.readyState == 4 && ajax_json.status == 200) {
+					// convertimos la cadena/respuesta en json para trabajarlo
+					var datos = JSON.parse(ajax_json.responseText);
+					var x = encontrarPersona(datos,nombre);// retorna true o false
+					console.log(x);
+					var mensaje = (x === true) ? "<h1>Fue encontrado:</h1><br>" + "Nombre:" + personaBuscada.name+ "<br>Apellido:" + personaBuscada.apellido + "<br>Edad:" +personaBuscada.age  : "<h1>No fue encontrado</h1>";
+					lugar.innerHTML = mensaje; 
+				}
+			};
+
+			ajax_json.open("GET","ajax_json_array.json",true);
+			ajax_json.send();
+		}
+
+		function encontrarPersona(objetoJson, nombre) {
+			var arreglo = [];
+			for(i in objetoJson){
+				// referencia a cada objeto json del array
+				var persona = objetoJson[i];
+				// ponemos el nombre de las personas dentro del arreglo
+				arreglo.push(persona.name);
+			}
+			// si un elemento no pertenece a un arreglo
+			// se el asigna como número de índice -1
+			// retornará true o false, si el nombre pertenece o no al arreglo
+			//return arreglo.indexOf(nombre) > -1;
+			if(arreglo.indexOf(nombre) > -1){
+				personaBuscada = devolverDatos(objetoJson,nombre);
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+
+		function devolverDatos(objetoJson,argument) {
+			for(i in objetoJson){
+				if(argument == objetoJson[i].name){
+					return objetoJson[i];
+				}
+			}
+		}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ajax mysql</title>
+</head>
+<body>
+	<form action="">
+		nombre: 	<input type="text" id="nombre"><br><br>
+		puntuación: <input type="text" id="puntuacion"><br><br>
+			        <input type="button" value="Enviar" onclick="post_ajax()"><br><br>
+		
+	</form>
+
+	<div id="info"></div>
+
+	<script>
+		function post_ajax() {
+			var xmlhttp = new XMLHttpRequest();
+
+			var nombre = document.getElementById('nombre').value;
+			var puntuacion = document.getElementById('puntuacion').value;
+
+			xmlhttp.onreadystatechange = function () {
+				if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+					document.getElementById('info').innerHTML = this.responseText;
+				}
+			};
+
+			xmlhttp.open("post","ajax_mysql_insertar_datos.php",true);
+			// le tenemos que mandan el header del post
+			xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			xmlhttp.send("nombre=" + nombre + "&puntuacion=" + puntuacion);
+		}
+	</script>
+</body>
+</html>
