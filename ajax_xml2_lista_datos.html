@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button onclick="ejecutarAjax()">Mostrar Información</button><br><br>
+	<table id="info"></table>
+	<script>
+
+		function ejecutarAjax() {
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function () {
+				if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+					// if (xmlhttp.responseXML !== null) {
+						// guardamos la info del xml en una variable
+						var xmldoc = xmlhttp.responseXML;
+						var tabla = "<tr><th>Nombre</th><th>Apellido</th></tr>";
+						// nos enfocamos en cada cliente:
+						persona = xmldoc.getElementsByTagName('cliente');
+						// extraemos el nombre y apellido de cada persona
+						// obtenemos el primer elemento que tenga como etiqueta nombre
+						// getElementsByTagName('nombre')[0]
+						// con nodeValue obtenemos el texto
+						for (var i = 0; i < persona.length; i++) {
+							tabla += "<tr><td>" + persona[i].getElementsByTagName('nombre')[0].childNodes[0].nodeValue + "</td><td>" + 
+								persona[i].getElementsByTagName('apellido')[0].childNodes[0].nodeValue + "</td>";
+						}
+
+						// vemos la info de los clientes
+						document.getElementById('info').innerHTML = tabla;
+					// }
+				}
+			}
+
+			xmlhttp.open("get","ajax_xml2.xml",true);
+			xmlhttp.send(); 
+		}
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- como parámetro de la función le pasamos el nombre ingresado en el input -->
+	Buscar Persona: <input type="type" onkeyup="ejecutarAjax(this.value)" placeholder="ingresar un nombre" >
+	<div id="info"></div>
+	<script>
+		function ejecutarAjax(argument) {
+			var ajax = new XMLHttpRequest();
+			ajax.onreadychangestate = function () {
+				if (ajax.readyState == 4 && ajax.statu == 200 ) {
+					var xml = ajax.responseXML;
+					// obtenemos el mensaje de la otra
+					var x = encontrarPersona(xml,argument);
+					document.getElementById('info').innerHTML = x;
+				}
+			};
+			ajax.open("get","ajax_xml2.xml",true);
+		}
+
+		function encontrarPersona(xml,nombre) {
+			var mensaje ="";
+			var usuarios = [];
+			var persona = xml.getElementsByTagName('cliente');
+
+			// extremos cada nombre y lo almacenamos en el arreglo usuarios
+			for (var i = 0; i < persona.length; i++) {
+				usuarios.push(persona[i].getElementsByTagName("nombre")[0].childNodes[0].nodeValue);
+
+			}
+			// verificamos si el usuario fue encontrado o no dentro del arreglo
+			mensaje = usuarios.indexOf(nombre) !== -1 ? "Sí, fue encontrado" : "No, fue encontrado";
+
+			return mensaje;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<style>
+table,th,td {
+  border : 1px solid black;
+  border-collapse: collapse;
+}
+th,td {
+  padding: 5px;
+}
+</style>
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+
+<h2>Ver Clientes</h2>
+
+<select id="listaDeClientes" onchange="ejecutarAjax()">Cliente</select>
+<br><br>
+<div id="info"></div>
+
+<script>
+function ejecutarAjax() {
+  var xml = new XMLHttpRequest();
+  xml.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var clientes = "";
+      var xmlDoc = xml.responseXML;
+      console.log(xxmlDoc);
+      var cliente = xmlDoc.getElementsByTagName("cliente");
+      for (var i = 0; i < cliente.length; i++) { 
+        clientes += "<option>"+ cliente[i].getElementsByTagName("nombre")[0].childNodes[0].nodeValue +"</option>";
+      }
+      document.getElementById("listaDeClientes").innerHTML = clientes;
+    }
+  }  
+  xml.open("GET","ajax_xml2.xml", true);
+  xml.send();
+}
+
+ejecutarAjax();
+
+
+// será ejecutada cada vez que el usuario seleccione un nombre del select
+function clienteSeleccionado() {
+  var select = document.getElementById("listaDeClientes");
+  // seleccionamos el número de index y el texto del elemento seleccionado
+  var cliente = select.options[select.selectedIndex].text;
+
+  document.getElementById("info").innerHTML = cliente + " fue seleccionado";
+
+}
+</script>
+
+</body>
+</html>

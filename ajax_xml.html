@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button onclick="ejecutarAjax()">Mostrar Información</button><br><br>
+	<div id="info"></div>
+	<script>
+		function ejecutarAjax() {
+			var array = [];
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function () {
+				if (this.readyState === 4 && this.status === 200) {
+					// if (this.responseXML !== null) {
+						array[0] = this.responseXML.getElementsByTagName('nombre').item(0);
+						array[1] = this.responseXML.getElementsByTagName('apellido').item(0);
+						array[2] = this.responseXML.getElementsByTagName('salario').item(0);
+						array[3] = this.responseXML.getElementsByTagName('edad').item(0);
+						console.log(array[0].firstChild.nodeValue);
+						document.getElementById('info').innerHTML = array[0].firstChild.nodeValue + " " + array[1].firstChild.nodeValue + " " + array[2].firstChild.nodeValue + " " + array[3].firstChild.nodeValue;
+					// } 
+				}
+			}
+
+			xmlhttp.open("get", "ajax_xml.xml",true);
+		}
+	</script>
+</body>
+</html>

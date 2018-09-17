@@ -1,0 +1,34 @@
+<!-- <?xml version = "1.0" enconding = "UTF-8" ?> -->
+<Clientes>
+	<cliente>
+		<nombre>Pepe</nombre>
+		<apellido>Muleiro</apellido>
+		<edad>54</edad>
+		<salario>42220</salario>
+	</cliente>
+	<cliente>
+		<nombre>Mortimer</nombre>
+		<apellido>Lopez</apellido>
+		<edad>53</edad>
+		<salario>42420</salario>
+	</cliente>
+	<cliente>
+		<nombre>Zapallo</nombre>
+		<apellido>Corso</apellido>
+		<edad>21</edad>
+		<salario>32000</salario>
+	</cliente>
+	<cliente>
+		<nombre>Optimus</nombre>
+		<apellido>Gomez</apellido>
+		<edad>42</edad>
+		<salario>45531</salario>
+	</cliente>
+	<cliente>
+		<nombre>Medio</nombre>
+		<apellido>Funes</apellido>
+		<edad>67</edad>
+		<salario>10323</salario>
+	</cliente>
+</Clientes>
+	
