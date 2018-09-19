@@ -1,0 +1,39 @@
+{"personas" :[
+			{ 
+			"nombre":"Eugenia",
+		  	"contrasenia":"eugenia123",
+		  	"edad":32,
+		  	"Pais":"líbano",
+			"DIRECCION":{"calle":"calle abriles 223","ciudad":"boston","cod_postal":1234},
+			"hijo":["mornar","conan"],
+			"suegros":null	
+			},
+			{ 
+			"nombre":"Carla",
+		  	"contrasenia":"carls123",
+		  	"edad":52,
+		  	"Pais":"líbano",
+			"DIRECCION":{"calle":"calle abriles 21","ciudad":"boston","cod_postal":1233},
+			"hijo":["pepe","coco"],
+			"suegros":null	
+			},
+			{ 
+			"nombre":"Morelia",
+		  	"contrasenia":"morelia3",
+		  	"edad":30,
+		  	"Pais":"francia",
+			"DIRECCION":{"calle":"calle abriles 223","ciudad":"boston","cod_postal":1234},
+			"hijo":null,
+			"suegros":null	
+			},
+			{ 
+			"nombre":"Luisa",
+		  	"contrasenia":"luisa3",
+		  	"edad":52,
+		  	"Pais":"polonia",
+			"DIRECCION":{"calle":"calle tucu 3","ciudad":"morelia","cod_postal":2122},
+			"hijo":["paca"],
+			"suegros":null	
+			}
+		]
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="info2"></div>
+	<script>
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		        var respuesta = JSON.parse(xhttp.responseText);
+		        var personas = respuesta.personas;
+		        var gente2 = "";
+			    for (var i = 0; i < personas.length; i++) {
+					gente2 += `<li> ${personas[i].nombre} vive en ${personas[i].DIRECCION['calle']} </li>`; 
+			    }
+			    document.getElementById('info2').innerHTML = gente2; 
+		    }
+		};
+		xhttp.open("GET", "index1.json", true);
+		xhttp.send();
+	</script>
+</body>
+</html>

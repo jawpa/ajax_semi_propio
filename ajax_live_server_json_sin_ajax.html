@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul id="info"></ul>
+	<ul id="info2"></ul>
+	<script>
+
+		var persona = {};
+		var personas =	[
+			{ 
+			"nombre":"Eugenia",
+		  	"contrasenia":"eugenia123",
+		  	"edad":32,
+		  	"Pais":"líbano",
+			"DIRECCION":{"calle":"calle abriles 223","ciudad":"boston","cod_postal":1234},
+			"hijo":["mornar","conan"],
+			"suegros":null	
+			},
+			{ 
+			"nombre":"Carla",
+		  	"contrasenia":"carls123",
+		  	"edad":52,
+		  	"Pais":"líbano",
+			"DIRECCION":{"calle":"calle abriles 21","ciudad":"boston","cod_postal":1233},
+			"hijo":["pepe","coco"],
+			"suegros":null	
+			},
+			{ 
+			"nombre":"Morelia",
+		  	"contrasenia":"morelia3",
+		  	"edad":30,
+		  	"Pais":"francia",
+			"DIRECCION":{"calle":"calle abriles 223","ciudad":"boston","cod_postal":1234},
+			"hijo":null,
+			"suegros":null	
+			},
+			{ 
+			"nombre":"Luisa",
+		  	"contrasenia":"luisa3",
+		  	"edad":52,
+		  	"Pais":"polonia",
+			"DIRECCION":{"calle":"calle tucu 3","ciudad":"morelia","cod_postal":2122},
+			"hijo":["paca"],
+			"suegros":null	
+			}
+		];
+
+		var gente = "";
+		for (var i = 0; i < personas.length; i++) {
+			gente += "<li>" + personas[i].nombre + " vive en " + personas[i].Pais + "</li>"; 
+		}
+
+		// usando inteporlación
+		var gente2 = "";
+		for (var i = 0; i < personas.length; i++) {
+			gente2 += `<li> ${personas[i].nombre} vive en ${personas[i].DIRECCION['calle']} </li>`; 
+		}		
+		document.getElementById('info').innerHTML = gente; 
+		document.getElementById('info2').innerHTML = gente2; 
+
+		
+	</script>
+</body>
+</html>
